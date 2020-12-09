@@ -1,4 +1,5 @@
 ## Recent Releases
+- `v1.33`更改composer requirement，适用于Laravel 7（2020-12-9）
 - `v1.30`支持腾讯云人脸识别（2018-12-7）
 - `v1.20`支持百度图片搜索（2018-8-13）
 - `v1.10`支持百度人体分析（2018-8-7）
@@ -66,7 +67,7 @@
 
 ## Installation
 
-`composer require hahaxixi/ai`
+`composer require j45un/ai`
 
 ## Usage
 1.一般使用
