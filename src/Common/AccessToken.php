@@ -1,11 +1,15 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: hahaxixi2017
  * Date: 2017/12/8
  * Time: 22:32
  */
-
+/**
+ * Modified by J45un.
+ * Date: 2020/12/9
+ */
 
 namespace AI\Common;
 
@@ -88,7 +92,7 @@ abstract class AccessToken implements AccessTokenInterface
     {
         $cacheKey = $this->getCacheKey();
         $cache = $this->getCache();
-        if (!$refresh && $cache->has($cacheKey)) {
+        if (!$refresh && $cache->hasItem($cacheKey)) {
             return $cache->get($cacheKey);
         }
         $token = $this->requestToken($this->getCredentials());
@@ -106,7 +110,7 @@ abstract class AccessToken implements AccessTokenInterface
      */
     public function setToken($token, $lifetime = 7200)
     {
-        $this->getCache()->set($this->getCacheKey(), [
+        $this->getCache()->getItem($this->getCacheKey())->set($this->getCacheKey(), [
             $this->tokenKey => $token,
             'expires_in' => $lifetime,
         ], $lifetime - $this->safeSeconds);

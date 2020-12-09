@@ -1,15 +1,21 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: hahaxixi2017
  * Date: 2017/12/8
  * Time: 22:37
  */
+/**
+ * Modified by J45un.
+ * Date: 2020/12/9
+ */
+
 namespace AI\Common\Traits;
 
 use AI\Common\ServiceContainer;
 use Psr\SimpleCache\CacheInterface;
-use Symfony\Component\Cache\Simple\FilesystemCache;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 trait InteractsWithCache
 {
@@ -29,8 +35,10 @@ trait InteractsWithCache
             return $this->cache;
         }
 
-        if (property_exists($this, 'app') && $this->app instanceof ServiceContainer
-            && isset($this->app['cache']) && $this->app['cache'] instanceof CacheInterface) {
+        if (
+            property_exists($this, 'app') && $this->app instanceof ServiceContainer
+            && isset($this->app['cache']) && $this->app['cache'] instanceof CacheInterface
+        ) {
             return $this->cache = $this->app['cache'];
         }
 
@@ -52,10 +60,10 @@ trait InteractsWithCache
     }
 
     /**
-     * @return \Symfony\Component\Cache\Simple\FilesystemCache
+     * @return \Symfony\Component\Cache\Adapter\FilesystemAdapter
      */
     protected function createDefaultCache()
     {
-        return new FilesystemCache();
+        return new FilesystemAdapter();
     }
 }
