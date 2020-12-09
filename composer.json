@@ -8,15 +8,13 @@
     "recognize",
     "php"
   ],
-  "authors": [
-    {
-      "name": "hahaxixi",
-      "email": "hahaxixicc@gmail.com"
-    }
-  ],
+  "authors": [{
+    "name": "hahaxixi",
+    "email": "hahaxixicc@gmail.com"
+  }],
   "require": {
     "symfony/http-foundation": "*",
-    "monolog/monolog": "^1.22",
+    "monolog/monolog": "^2.1.1",
     "guzzlehttp/guzzle": "^6.3",
     "pimple/pimple": "^3.0",
     "symfony/cache": "^3.3"
