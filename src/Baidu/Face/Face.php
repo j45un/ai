@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: hahaxixi2017
  * Date: 2017/12/11
  */
+
 namespace AI\Baidu\Face;
 
 use AI\Baidu\Client;
@@ -45,6 +47,16 @@ class Face
      * @var string 第三路由,人脸组
      */
     protected $versionUrl_2 = 'face/v2/faceset/group/';
+    /**
+     * @var array
+     */
+    protected $versionApi_3 = [
+        'matchv3'
+    ];
+    /**
+     * @var string 第三路由,人脸组
+     */
+    protected $versionUrl_3 = 'face/v3/match';
     /**
      * @var string 人脸对比url后缀
      */
@@ -98,7 +110,7 @@ class Face
         if (isset($this->params['user_info'])) {
 
             if (strlen($this->params['user_info']) > 256) {
-                throw new InvalidArgumentException('user_info size error');//SDK103
+                throw new InvalidArgumentException('user_info size error'); //SDK103
             }
         }
 
@@ -115,11 +127,11 @@ class Face
 
             foreach ($groupIds as $groupId) {
                 if (!preg_match('/^\w+$/', $groupId)) {
-                    throw new InvalidArgumentException('group_id format error');//SDK104
+                    throw new InvalidArgumentException('group_id format error'); //SDK104
                 }
 
                 if (strlen($groupId) > 48) {
-                    throw new InvalidArgumentException('group_id size error');//SDK105
+                    throw new InvalidArgumentException('group_id size error'); //SDK105
                 }
             }
 
@@ -129,11 +141,11 @@ class Face
         // uid参数 组成为字母/数字/下划线，且不超过128B
         if (isset($this->params['uid'])) {
             if (!preg_match('/^\w+$/', $this->params['uid'])) {
-                throw new InvalidArgumentException('uid format error');//SDK106
+                throw new InvalidArgumentException('uid format error'); //SDK106
             }
 
             if (strlen($this->params['uid']) > 128) {
-                throw new InvalidArgumentException('uid size error');//SDK107
+                throw new InvalidArgumentException('uid size error'); //SDK107
             }
         }
 
@@ -142,7 +154,7 @@ class Face
 
             //编码后小于10m
             if (empty($this->params['image']) || strlen($this->params['image']) >= 10 * 1024 * 1024) {
-                throw new InvalidArgumentException('image size error');//SDK100
+                throw new InvalidArgumentException('image size error'); //SDK100
             }
         } elseif (isset($this->params['images'])) {
             $images = $this->getEncodeImages($this->params['images']);
@@ -151,11 +163,11 @@ class Face
             // 人脸比对 编码后小于20m 其他 10m
             if ($url == $this->matchEndPoint) {
                 if (count($images) < 2 || strlen($this->params['images']) >= 20 * 1024 * 1024) {
-                    throw new InvalidArgumentException('image size error');//SDK100
+                    throw new InvalidArgumentException('image size error'); //SDK100
                 }
             } else {
                 if (count($images) < 1 || strlen($this->params['images']) >= 10 * 1024 * 1024) {
-                    throw new InvalidArgumentException('image size error');//SDK100
+                    throw new InvalidArgumentException('image size error'); //SDK100
                 }
             }
         }
@@ -208,10 +220,17 @@ class Face
             $versionUrl = $this->versionUrl_1;
         } elseif (in_array($param, $this->versionApi_2)) {
             $versionUrl = $this->versionUrl_2;
+        } elseif (in_array($param, $this->versionApi_3)) {
+            $versionUrl = $this->versionUrl_3;
         } else {
             $versionUrl = $this->versionUrl;
         }
-        $this->endPoint = $versionUrl . $param;
+        if ($param == 'matchv3') {
+            $this->endPoint = $versionUrl;
+        } else {
+            $this->endPoint = $versionUrl . $param;
+        }
+
         return $this;
     }
 

@@ -9,8 +9,8 @@
     "php"
   ],
   "authors": [{
-    "name": "hahaxixi",
-    "email": "hahaxixicc@gmail.com"
+    "name": "j45un",
+    "email": "j45un@starpulse.cn"
   }],
   "require": {
     "symfony/http-foundation": "*",
