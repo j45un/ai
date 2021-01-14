@@ -8,6 +8,7 @@
  */
 return [
     'detect', //人脸检测
+    'detectv3', //人脸检测
     'match', //人脸比对
     'matchv3', //人脸比对
     'verify', //人脸认证:uid用户id,group_id:用户组;image:图像base64编码

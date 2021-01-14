@@ -1,9 +1,14 @@
 ## Recent Releases
+- `v1.35`添加百度v3人脸识别API调用（2021-1-14）
 - `v1.34`添加百度v3人脸比对API调用（2021-1-12）
 - `v1.33`更改composer requirement，适用于Laravel 7（2020-12-9）
 - `v1.30`支持腾讯云人脸识别（2018-12-7）
 - `v1.20`支持百度图片搜索（2018-8-13）
 - `v1.10`支持百度人体分析（2018-8-7）
+## Based On
+- 原始代码来自于 [huanghe/ai](https://github.com/huanghe/ai)
+
+- 所有API在2018-01-11通过测试
 ## Recent Test
 - 所有API在2018-01-11通过测试
 ## Develop documents
@@ -27,7 +32,7 @@
 
 ## SimpleTest
 
-1. [下载zip包](https://github.com/huanghe/ai/archive/master.zip) 或者clone本项目
+1. [下载zip包](https://github.com/j45un/ai/archive/master.zip) 或者clone本项目
 2. 进入本项目根目录，执行`composer install`,（[包管理工具composer](https://getcomposer.org/)）
 3. 在项目目录`tests->config`下面添加配置文件`ai.php`（需要自己到各平台注册获取试用账号）,内容如：
 	
@@ -98,6 +103,7 @@ $result = Entry::Qcloud($config)->face->select('identify')->where(['image' => __
 ```php
 $result = Entry::Baidu(config('ai'))->face->select('detect')->where(['image' => file_get_contents(__DIR__ . '/file/face_detect.jpeg'), 'id_card_side' => 'front'])->get();
 ```
+- 人脸比对代码
 ```php
 $params = [
 		['image'=> $url_1,
@@ -107,6 +113,10 @@ $params = [
 	];
 
 $result = Entry::Baidu(config('ai'))->face->select('matchv3')->where($params)->get();
+```
+- 一行代码调用百度V3人脸检测示例
+```php
+$result = Entry::Baidu(config('ai'))->face->select('detectv3')->where(['image' => $source,'image_type' => 'URL'])->get();
 ```
 
 3.Yii2使用

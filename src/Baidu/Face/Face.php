@@ -51,12 +51,12 @@ class Face
      * @var array
      */
     protected $versionApi_3 = [
-        'matchv3'
+        'matchv3', 'detectv3'
     ];
     /**
      * @var string 第三路由,人脸组
      */
-    protected $versionUrl_3 = 'face/v3/match';
+    protected $versionUrl_3 = 'face/v3/';
     /**
      * @var string 人脸对比url后缀
      */
@@ -150,11 +150,17 @@ class Face
         }
 
         if (isset($this->params['image'])) {
-            $this->params['image'] = $this->getEncodeImages($this->params['image']);
+            if (isset($this->params['image_type'])) {
+                if ($this->params['image_type'] == 'URL') {
+                    $this->params['image'] = $this->params['image'];
+                }
+            } else {
+                $this->params['image'] = $this->getEncodeImages($this->params['image']);
 
-            //编码后小于10m
-            if (empty($this->params['image']) || strlen($this->params['image']) >= 10 * 1024 * 1024) {
-                throw new InvalidArgumentException('image size error'); //SDK100
+                //编码后小于10m
+                if (empty($this->params['image']) || strlen($this->params['image']) >= 10 * 1024 * 1024) {
+                    throw new InvalidArgumentException('image size error'); //SDK100
+                }
             }
         } elseif (isset($this->params['images'])) {
             $images = $this->getEncodeImages($this->params['images']);
@@ -225,8 +231,8 @@ class Face
         } else {
             $versionUrl = $this->versionUrl;
         }
-        if ($param == 'matchv3') {
-            $this->endPoint = $versionUrl;
+        if (in_array($param, $this->versionApi_3)) {
+            $this->endPoint = $versionUrl . str_ireplace('v3', '', $param);
         } else {
             $this->endPoint = $versionUrl . $param;
         }
