@@ -18,7 +18,7 @@
     "monolog/monolog": "*",
     "guzzlehttp/guzzle": "*",
     "pimple/pimple": "^3.0",
-    "symfony/cache": "^5.2"
+    "symfony/cache": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "^8.5",
