@@ -2,7 +2,9 @@
 
 namespace AI\Tests\FacePlus\Body;
 
+
 use AI\Entry;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Created by PhpStorm.
@@ -11,7 +13,7 @@ use AI\Entry;
  * Time: 15:56
  * 调用方法：vendor/phpunit/phpunit/phpunit --testdox tests/FacePlus/Body/BodyTest.php
  */
-class BodyTest extends \PHPUnit_Framework_TestCase
+class BodyTest extends TestCase
 {
     /**
      * OcrTest constructor.

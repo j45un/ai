@@ -2,15 +2,16 @@
 
 namespace AI\Tests\Baidu\Body;
 
-use AI\Entry;
 
+use AI\Entry;
+use PHPUnit\Framework\TestCase;
 /**
  * Created by PhpStorm.
  * User: hahaxixi2017
  * Date: 2018/8/6
  * Time: 12:14
  */
-class BodyTest extends \PHPUnit_Framework_TestCase
+class BodyTest extends TestCase
 {
     //vendor/phpunit/phpunit/phpunit --testdox tests/Baidu/Body/BodyTest.php
     public function testGet()
