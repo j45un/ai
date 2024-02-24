@@ -1,4 +1,5 @@
 ## Recent Releases
+- `v1.5`添加百度V3完整api（2021-1-14）
 - `v1.35`添加百度v3人脸识别API调用（2021-1-14）
 - `v1.34`添加百度v3人脸比对API调用（2021-1-12）
 - `v1.33`更改composer requirement，适用于Laravel 7（2020-12-9）
@@ -117,6 +118,24 @@ $result = Entry::Baidu(config('ai'))->face->select('matchv3')->where($params)->g
 - 一行代码调用百度V3人脸检测示例
 ```php
 $result = Entry::Baidu(config('ai'))->face->select('detectv3')->where(['image' => $source,'image_type' => 'URL'])->get();
+```
+- 百度V3 FACE支持的API列表
+```php
+match_v3,
+detect_v3,
+search_v3,
+multi-search_v3,
+useradd_v3,
+userupdate_v3,
+facedelete_v3,
+userget_v3,
+groupgetusers_v3,
+usercopy_v3,
+userdelete_v3,
+groupadd_v3,
+groupdelete_v3,
+groupgetlist_v3,
+personverify_v3
 ```
 
 3.Yii2使用

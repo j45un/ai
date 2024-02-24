@@ -2,6 +2,7 @@
   "name": "j45un/ai",
   "description": "php",
   "license": "MIT",
+  "version": "1.5",
   "keywords": [
     "AI",
     "intelligent",
@@ -14,8 +15,8 @@
   }],
   "require": {
     "symfony/http-foundation": "*",
-    "monolog/monolog": "^2.1.1",
-    "guzzlehttp/guzzle": "^6.3",
+    "monolog/monolog": "*",
+    "guzzlehttp/guzzle": "*",
     "pimple/pimple": "^3.0",
     "symfony/cache": "^5.2"
   },

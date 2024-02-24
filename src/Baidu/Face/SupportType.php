@@ -25,4 +25,22 @@ return [
     'getusers', //组内用户列表查询
     'adduser', //组间复制用户
     'deleteuser', //组内删除用户
+
+
+    'match_v3',
+    'detect_v3',
+    'search_v3',
+    'multi-search_v3',
+    'useradd_v3',
+    'userupdate_v3',
+    'facedelete_v3',
+    'userget_v3',
+    'groupgetusers_v3',
+    'usercopy_v3',
+    'userdelete_v3',
+    'groupadd_v3',
+    'groupdelete_v3',
+    'groupgetlist_v3',
+    'personverify_v3',
+    'faceverify_v3',
 ];
