@@ -34,6 +34,13 @@ class Client extends BaseClient
      */
     public function post($url, $data = [], $params = [], $headers = [])
     {
+        if ($url == 'face/v3/match'){
+            return $this->httpPostJson($url, $data, $headers=array(
+                'Content-Type: application/json',
+                'Cache-Control: no-cache',
+                'Pragma: no-cache'
+            ));
+        };
         return $this->httpPost($url, $data);
     }
 
