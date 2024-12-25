@@ -1,4 +1,5 @@
 ## Recent Releases
+- `v1.6.2`移除多余的Log (2024-5-13)
 - `v1.6.1`修复百度人脸比对时报错"error_code":222200,"error_msg":"request body should be json format" (2024-5-13)
 - `v1.5`添加百度V3完整api（2021-1-14）
 - `v1.35`添加百度v3人脸识别API调用（2021-1-14）
