@@ -51,7 +51,7 @@ class Face
      * @var array
      */
     protected $versionApi_3 = [
-        'matchv3', 'detectv3', 'search', 'multi-search', 'useradd', 'userupdate', 'facedelete', 'userget', 'getlist', 'getusers'
+        'matchv3', 'detectv3'
     ];
     /**
      * @var string 第三路由,人脸组
@@ -222,66 +222,19 @@ class Face
         if (!in_array($param, $allowOcrType)) {
             throw new InvalidArgumentException('invalid argument:' . $param);
         }
-
-
-        if (strpos($param, 'v3') !== false) {
-            switch ($param) {
-                case 'match_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'match';
-                    break;
-                case 'detect_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'detect';
-                    break;
-                case 'search_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'search';
-                    break;
-                case 'multi-search_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'multi-search';
-                    break;
-                case 'useradd_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'faceset/user/add';
-                    break;
-                case 'userupdate_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'faceset/user/update';
-                    break;
-                case 'facedelete_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'faceset/face/delete';
-                    break;
-                case 'userget_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'faceset/user/get';
-                    break;
-                case 'groupgetusers_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'faceset/group/getusers';
-                    break;
-                case 'usercopy_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'faceset/user/copy';
-                    break;
-                case 'userdelete_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'faceset/user/delete';
-                    break;
-                case 'groupadd_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'faceset/group/add';
-                    break;
-                case 'groupdelete_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'faceset/group/delete';
-                    break;
-                case 'groupgetlist_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'faceset/group/getlist';
-                    break;
-                case 'personverify_v3':
-                    $this->endPoint = $this->versionUrl_3 . 'person/verify';
-                    break;
-            }
+        if (in_array($param, $this->versionApi_1)) {
+            $versionUrl = $this->versionUrl_1;
+        } elseif (in_array($param, $this->versionApi_2)) {
+            $versionUrl = $this->versionUrl_2;
+        } elseif (in_array($param, $this->versionApi_3)) {
+            $versionUrl = $this->versionUrl_3;
         } else {
-            if (in_array($param, $this->versionApi_1)) {
-                $versionUrl = $this->versionUrl_1;
-            } elseif (in_array($param, $this->versionApi_2)) {
-                $versionUrl = $this->versionUrl_2;
-            } elseif (in_array($param, $this->versionApi_3)) {
-                $versionUrl = $this->versionUrl_3;
-            } else {
-                $versionUrl = $this->versionUrl;
-            }
+            $versionUrl = $this->versionUrl;
+        }
+        if (in_array($param, $this->versionApi_3)) {
+            $this->endPoint = $versionUrl . str_ireplace('v3', '', $param);
+        } else {
+            $this->endPoint = $versionUrl . $param;
         }
 
         return $this;
